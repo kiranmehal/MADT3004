@@ -2,174 +2,102 @@
 
 import UIKit
 
-var str = "Hello, playground"
-func display()
+var a:Int
+//structure
+struct student
 {
-    print("kirandeep")
-}
-display()
-
-func display(name:String)
-{
-    print("welcome,\(name)")
-}
-display(name:"kirandeep")
-
-//use of parametr in call of function
-func display(n:Int)
-{
-    for i in 1...n
-    {
-        print(i)
+    var sid:Int
+    var snm:String
+    var total:Double
+    
+    init() {    /// constructure
+        self.sid = -1
+        self.snm = "dhgjeh"
+        self.total = 100.0
     }
-}
-display(n:5) //here n: is must we can not omit this
-
-//use of (_) to omit use of parameter while displaying
-func display(_ n:Int) // n necomes optional
-{
-    for i in 1...n
-    {
-        print(i)
+    init(sid:Int,snm:String,total:Double) {    /// constructure
+        self.sid = sid
+        self.snm = snm
+        self.total = total
     }
-}
-display(5)
-
-//funch with 1 parameter
-func display(number n:Int)
-{
-    for i in 1...n
+    func display()
     {
-        print(i)
+        print(self.sid,self.snm,self.total)
     }
-}
-display(number:5)
-
-//funch with 2 parameters
-func sum(a:Int,b:Int)
-{
-print("add : \(a+b)")
-}
-sum(a:10,b:20)
-
-
-//eng form using lables
-func sum(of a:Int,and b:Int)
-{
-    print("add \(a+b)")
-}
-sum(of:10,and:30)
-
-func greet()->String
-{
-return "welcome to toronto"
-}
-//greet()
-var s=greet()
-print(s)
-print(greet())
-
-//interger type
-/*func add(c:Int,d:Int)
-{
-    return "addition ,\(c+d)+"
-}
-//float type
-func add(c:Float,d:Float)
-{
-    return "addtion of float,\(c+d)"
-}
-//double
-func add(c:Double,d:Double)
-{
-    return "\(c+d)"
-}*/
-
-func add(_ a:Int,_ b:Int)->Int
-{
-    return a+b
-}
-
-func add(_ a:String,_ b:String)->String
-{
-    return a+b
-}
-
-print(add(3,4))
-print(add("hello","world"))
-
-//swipee strings
-func swip(a:String ,b:String)->(String,String)
-{
-    return(b,a)
-}
-let x=swip(a: "kiran",b: "mehal")
-print(x.0,x.1)
-
-//swipe numbers
-func swip(a: Int,b:Int)->(a:Int,b:Int)
-{
-    return (b,a)
-}
-let z=swip(a:100,b:200)
-print(z.a,z.b)
-
-
-//array elements sum
-func addarry(a: [Int])->Int
-{ var sum=0
-    for k in a
+    func display(snm:String)
     {
-      sum=sum+k
-        
+    
+        print(snm)
+        print(self.sid,self.snm,self.total)
     }
-    return sum
     
 }
-print(addarry(a: [1,2,3]))
 
-var na=[100,200,50,140]
-print(addarry(a: na))
-//var myMax = sort(myArray,>)[0]
-//find min maxcin array
-func findminmax(arr:[Int])->(min:Int,max:Int)
+let s2=student()
+s2.display()
+//s2.display(sid:4,snm:"bhjjhu",total:90)
+let s1 = student(sid: 1, snm: "kiran", total: 90.0)
+print(s1.sid,s1.snm,s1.total)
+s1.display()
+s1.display(snm:"test structure")
+var s3=s1
+ s3.display(snm:"s3")
+
+
+
+
+
+
+
+//classs
+class faculty
 {
-    return (arr.min() ?? 0,arr.max() ?? 0)
+    var fid:Int = 0
+    var fnm:String!
+    var salary:Double = 0.0
+    
+    init() {    /// constructure
+        self.fid = -1
+        self.fnm = "dhgjeh"
+        self.salary = 100.0
+    }
+    init(fid:Int,fnm:String,salary:Double) {    /// constructure
+        self.fid = fid
+        self.fnm = fnm
+        self.salary = salary
+    }
+    
+    func display()
+    {
+        print(self.fid,self.fnm,self.salary)
+    }
+    
+    func display(fnm:String)
+    {
+        
+        print(fnm)
+        print(self.fid,self.fnm,self.salary)
+    }
+    deinit {
+        print("structure out of scope")
+    }
 }
-var minmax=findminmax(arr: [23,45,37,89,90,12])
-print(minmax.min,minmax.max)
+let f1=faculty()
+f1.fid=100
+f1.fnm="mehal"
+f1.salary=2000.0
+f1.display()
+print(f1)//__lldb_expr_44.facultyprint(f1.fid,f1.fnm,f1.salary) //(!) here unwraps the value
 
-//find maximum
-var myArray:[Int]=[2,45,67,34,89,190]
-var myMax = 0
-for i in 0..<myArray.count {
-    if (myArray[i] > myMax){myMax = myArray[i]}
-}
-print("maximum is \(myMax)")
+f1.display()
 
-//find minimum
-var array:[Int]=[200,45,67,34,89,190]
-var myMin=array[0]
-for i in 0..<array.count {
-    if (array[i] < myMin){myMin = array[i]}
-}
-print("minimum is \(myMin)")
+let f2=faculty(fid: 2, fnm: "ghjhtyy", salary: 6000)
+f2.display()
+var f3=f1
+f3.display(fnm:"-----f3=====")
+f1.fnm="new faculty membwe for f1"
+f1.display(fnm:"-----f1----")
+f3.display(fnm:"---f3----")
 
 
-//default function value
-func area( l:Float,  b:Float=6.5)->(Float)
-{
-    return (l * b)
-}
-print(area(l:5.0))
 
-
-func area(_ l:Float,_ b:Float,_ h:Float=2.0)->Float
-{
-  return(l*b*h)
-}
-print(area(3.0,4.0))
-
-
-//iout example
-func swaptwoints(_ a: inout Int,_ b: inout )
